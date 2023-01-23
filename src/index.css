@@ -71,7 +71,7 @@ ul {
 .question--options {
   display: flex;
 }
-.Option {
+.option {
   font-family: 'Inter';
   font-weight: 500;
   font-size: 16px;
@@ -90,5 +90,17 @@ ul {
   font-size: 18px;
   padding: 16px 40px;
   align-self: center;
+}
+.quiz--submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 20px;
+}
+.quiz--score {
+  /* font-family: 'Inter'; */
+  font-weight: 700;
+  font-size: 25px;
+  color: #293264;
+  margin-right: 20px;
 }

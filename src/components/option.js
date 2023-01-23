@@ -9,7 +9,7 @@ export default function Option (props) {
             return "#D6DBF5"
         }
         return "white"
-    }, [])
+    }, [props.isChosen, props.isCorrect, props.isSubmitted])
 
     const styles = {
         backgroundColor: color,
@@ -17,6 +17,11 @@ export default function Option (props) {
     }
 
     return(
-       <div className="Option" onClick={props.handleClick} style={styles} dangerouslySetInnerHTML={{__html: props.title}}></div> 
+       <div className="option"
+            onClick={props.isSubmitted ? "" : props.handleClick}
+            style={styles}
+            dangerouslySetInnerHTML={{__html: props.title}}>
+
+        </div> 
     )
 }
