@@ -1,6 +1,5 @@
 import React, {createContext} from 'react'
 import Question from './question'
-import {ScoreContext} from './ScoreContext'
 
 export default function Quiz() {
     const [isSubmitted, setIsSubmitted] = React.useState(false)
@@ -21,6 +20,7 @@ export default function Quiz() {
               options={item.incorrect_answers}
               id={index}
               isSubmitted={isSubmitted}
+              setScore={setScore}
           />
         )
     })
@@ -31,14 +31,12 @@ export default function Quiz() {
     }
 
     return(
-        <ScoreContext.Provider value={score}>
-            <form className='quiz'>
-                {quizData}
-                <div className='quiz--submit'>
-                    <p className='quiz--score'>{isSubmitted ? `You scored ${score}/${quizData.length} correct answers` : ""}</p>
-                    <button className='button quiz--button' onClick={submitQuiz}>{isSubmitted ? "Play again" : "Check answers"}</button>
-                </div>
-            </form>
-        </ScoreContext.Provider>
+        <form className='quiz'>
+            {quizData}
+            <div className='quiz--submit'>
+                <p className='quiz--score'>{isSubmitted ? `You scored ${score}/${quizData.length} correct answers` : ""}</p>
+                <button className='button quiz--button' onClick={submitQuiz}>{isSubmitted ? "Play again" : "Check answers"}</button>
+            </div>
+        </form>
     )
 }

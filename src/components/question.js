@@ -1,10 +1,8 @@
 import React, {useContext} from 'react'
 import Option from './option'
-import { ScoreContext } from './ScoreContext'
 
 export default function Question (props) {
     const [options, setOptions] = React.useState([])
-    const {score, setScore} = useContext(ScoreContext)
 
     React.useEffect(function() {
         const allOptions = props.options.concat([props.answer]).map((item, index) => ({
@@ -21,19 +19,18 @@ export default function Question (props) {
             ...item,
             isChosen: item.id === id
         })))
-        changeScore()
     }
 
-    function changeScore() {
-        let score = 0
-        for (let item in options) {
-            console.log(item)
-            if (options.isChosen && options.isCorrect) {
-                score++
+    React.useEffect(function() {
+        if(props.isSubmitted) { 
+            for (let item of options) {
+                if (item.isChosen && item.isCorrect) {
+                    props.setScore(prevScore => ++prevScore)
+                }
             }
         }
-        setScore(score)
-    }
+    }, [options, props.isSubmitted])
+
     const optionsData = options.map(item => {
         return(
             <Option key={item.id}

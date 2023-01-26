@@ -17,11 +17,10 @@ export default function Option (props) {
     }
 
     return(
-       <div className="option"
-            onClick={props.isSubmitted ? "" : props.handleClick}
+        <div className="option"
+            onClick={props.isSubmitted ? undefined : props.handleClick}
             style={styles}
             dangerouslySetInnerHTML={{__html: props.title}}>
-
         </div> 
     )
 }
